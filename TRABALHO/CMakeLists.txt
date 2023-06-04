@@ -3,4 +3,4 @@ project(TRABALHO C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(TRABALHO main.c Paragens.c Paragens.h)
+add_executable(TRABALHO main.c Paragens.c ParagensLinhas.h Linhas.c GlobalFunc.c GlobalFunc.h)

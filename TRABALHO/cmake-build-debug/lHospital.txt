@@ -1,0 +1,6 @@
+Linha do Hospital
+Hospital Pediatrico # P002
+Loja do Cidadao # P001
+Quinta da Fonte # P020
+Sobral de Ceira #P019
+Portagem # P012
