@@ -14,8 +14,9 @@ int menu(){
     printf("\nEscolha uma opcao: ");
 
         if(scanf(" %d", &i)!=1){
-            puts("Erro: voce nao digitou um numero inteiro.");
+            puts("Erro: Escolha uma das opcoes apresentadas.");
             fflush(stdin);
+            i=5;
         }
 
     }while(i<1 || i>4);
@@ -32,8 +33,9 @@ int menuParagens(){
     printf("\nEscolha uma opcao: ");
 
         if(scanf(" %d", &i)!=1){
-            puts("Erro: voce nao digitou um numero inteiro.");
+            puts("Erro: Escolha uma das opcoes apresentadas.");
             fflush(stdin);
+            i=5;
         }
     }while(i<1 || i>4);
     return i;
@@ -52,8 +54,9 @@ int menuLinhas(){
         printf("\nEscolha uma opcao: ");
 
         if(scanf(" %d", &i)!=1){
-            puts("Erro: voce nao digitou um numero inteiro.");
+            puts("Erro: Escolha uma das opcoes apresentadas.");
             fflush(stdin);
+            i=8;
         }
     }while(i<1 || i>7);
     return i;

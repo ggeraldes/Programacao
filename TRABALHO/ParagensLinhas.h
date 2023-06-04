@@ -32,6 +32,8 @@ pParagem adiciona_paragem(pParagem tab, int* n, char str_name[50], char str_cod[
 
 pParagem elimina_paragem(pParagem tab, int *n);
 
+void incrementNParagens(pParagem tab, int n);
+
 //--------------------------LINHAS---------------------------
 
 void escreve_linhas(pLinha lista);

@@ -62,7 +62,7 @@ pLinha adiciona_linha(pLinha p, char str[50]){
     //printf("parei aqui");
     nova->nParagens=0;
     nova->paragens = NULL;
-
+    printf("Linha Adicionada!\n");
 
     nova->prox = p;
     p = nova;
@@ -223,7 +223,7 @@ pLinha elimina_Linha(pLinha l, pParagem p, int n){
     }
 
     if(atual ==NULL)return l;
-
+    printf("Linha Eliminada!\n");
     for(int i=0; i<atual->nParagens; i++)
         for(int y=0;y<n;y++)
             if(strcmp(p[y].codigo, atual->paragens[i].codigo)==0)
@@ -335,7 +335,7 @@ void registarDados(pLinha* l, pParagem* p, int* n) {
     // Ler o número de linhas
     int numLinhas;
     fread(&numLinhas, sizeof(int), 1, arquivo);
-
+    nL=numLinhas;
     // Ler as linhas
     for (int i = 0; i < numLinhas; i++) {
         pLinha linha = (pLinha)malloc(sizeof(linhas));
@@ -345,6 +345,8 @@ void registarDados(pLinha* l, pParagem* p, int* n) {
 
         linha->paragens = (pParagem)malloc(linha->nParagens * sizeof(linhas));
         fread(linha->paragens, sizeof(paragem), linha->nParagens, arquivo);
+
+        incrementNParagens(linha->paragens, linha->nParagens);
 
         linha->prox = *l;
         *l = linha;
@@ -356,8 +358,9 @@ void registarDados(pLinha* l, pParagem* p, int* n) {
 void caminhoMaisRapido(pLinha l){
 
 
-    int maisRapido=100000, verificado=0;
+    int maisRapido=100000, verificado=0, inicial=0, final=0;
     char linha[50], partida[50], chegada[50];
+    pLinha temp;
 
     printf("Partida: ");
     scanf(" %99[^\n]", partida);
@@ -378,12 +381,18 @@ void caminhoMaisRapido(pLinha l){
                                     maisRapido=y-i;
                                     strcpy(linha, l->nome);
                                     verificado=1;
+                                    temp=l;
+                                    inicial=i;
+                                    final=y;
                                 }
                             }else{
                                 if(i-y<maisRapido){
                                     maisRapido=i-y;
                                     strcpy(linha, l->nome);
-                                    verificado=1;
+                                    verificado=2;
+                                    temp=l;
+                                    inicial=i;
+                                    final=y;
                                 }
                             }
                         }
@@ -393,8 +402,24 @@ void caminhoMaisRapido(pLinha l){
 
         l = l->prox;
     }
-    if(verificado==1)
-        printf("\nA melhor linha sera a %s", linha);
+    if(verificado==1){
+        printf("Melhor percurso pela linha '%s'\n", linha);
+                for (int i = inicial; i <= final; i++) {
+                    printf("%s",  temp->paragens[i].nome);
+                    if(i!=final)
+                        printf(" -> ");
+                }
+                printf("\n");
+    }
+    else  if(verificado==2) {
+        printf("Melhor percurso pela linha %s\n", linha);
+            for (int i = inicial; i >= final; i--) {
+                printf("%s", temp->paragens[i].nome);
+                if (i != final)
+                    printf(" -> ");
+            }
+            printf("\n");
+    }
     else
         printf("\nNenhuma linha tem esses dois pontos!");
 

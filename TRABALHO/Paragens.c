@@ -12,7 +12,17 @@
 #define MAX 100
 int nP=0;
 
-paragem obtem_info(){
+void incrementNParagens(pParagem tab, int n){
+    int value=0;
+    for(int i=0; i<n; i++){
+        sscanf(tab[i].codigo, "P%d", &value);
+        if(value>=nP)
+            nP=value+1;
+    }
+}
+
+/*
+ paragem obtem_info(){
 
     paragem t;
     printf("Nome da paragem: ");
@@ -30,6 +40,7 @@ paragem obtem_info(){
 
 
 }
+ */
 void escreve_info(paragem p){
 
 
@@ -122,26 +133,27 @@ pParagem elimina_paragem(pParagem tab, int *n){
     for(i=0; i<*n && strcmp(st, tab[i].codigo)!=0; i++)
         ;
         if(i==*n){
-            printf("Paragem nao existe\n"); return tab;
+            printf("Paragem nao existe!\n"); return tab;
         }
         else if(*n==1 && tab[i].nLinhas==0){
-            printf("Paragem eliminada!a\n");
+            printf("Paragem eliminada!\n");
             free(tab); *n=0; return NULL;
         }
         else if(tab[i].nLinhas==0){
             t = tab[i];
             tab[i] = tab[*n-1];
             aux = realloc(tab, sizeof(paragem) * (*n-1));
-            printf("Paragem eliminada!b\n");
+            printf("Paragem eliminada!\n");
             if(aux!=NULL){
                 tab = aux;
                 (*n)--;
             }
             else
                 tab[i] = t;
-            return tab;
         }else
             printf("ERRO - PARAGEM REGISTADA EM LINHA!\n");
+
+        return tab;
 
 }
 
